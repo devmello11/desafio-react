@@ -31,13 +31,18 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
 
   const login = async (email: string, password: string) => {
     try {
+      console.log('Tentando login com:', email, password);
       const response = await loginService(email, password);
+      console.log('Resposta da API de login:', response);
       setToken(response.token);
       setTokenState(response.token);
       setUser(response.user);
-      // O redirecionamento será feito pelo useEffect abaixo
+      router.push('/clientes'); // Redireciona para a página de clientes após login
     } catch (error) {
       console.error('Erro ao fazer login:', error);
+      if (error instanceof Error) {
+        alert(error.message || 'Erro ao fazer login');
+      }
       throw error;
     }
   };
@@ -46,11 +51,11 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     if (
       token &&
       typeof window !== 'undefined' &&
-      window.location.pathname !== '/' &&
+      window.location.pathname !== '/clientes' &&
       window.location.pathname !== '/login' &&
       window.location.pathname !== '/register'
     ) {
-      router.push('/');
+      router.push('/clientes');
     }
   }, [token, router]);
 

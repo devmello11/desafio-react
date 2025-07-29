@@ -14,7 +14,7 @@ export default function ListaUsuarios(props: ListaUsuariosProps) {
     return (
       <div className="flex items-center h-16 px-6 py-3 rounded-md bg-zinc-900 hover:bg-black ">
         <div className="flex-1 flex flex-col">
-            <span className="font-semibold">{usuario.nome}</span>
+            <span className="font-semibold">{usuario.nome ?? (usuario as any).name}</span>
             <span className="text-sm text-zinc-400">{usuario.email}</span>
             
             

@@ -1,7 +1,8 @@
-export default interface Usuario{
+export default interface Usuario {
     id: string;
     nome: string;
-    email:string;
+    email: string;
     senha: string;
-    
+    phone: string;
+    company: string;
 }

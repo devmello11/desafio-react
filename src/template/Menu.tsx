@@ -8,7 +8,7 @@ export default function Menu(props: MenuProps){
     return(
         <div className={` ${props.className ?? ''}`}>
          <MenuGrupo texto="Listar Clientes"/>
-         <MenuItem icons={ListIcon} texto="Lista" url="/"/>
+         <MenuItem icons={ListIcon} texto="Lista" url="/clientes"/>
 
          <MenuGrupo texto="Criar novo cliente"/>
          <MenuItem icons={UserPlus} texto="Cadastro" url="/auth/register"/>
