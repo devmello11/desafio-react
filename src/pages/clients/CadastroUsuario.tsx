@@ -1,4 +1,4 @@
-"use Client"
+"use client";
 import { useState } from "react"
 import todosOsUsuarios from "../../data/constantes/usuarios";
 import Usuario from "@/data/model/Usuarios";

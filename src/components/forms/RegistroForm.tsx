@@ -28,60 +28,69 @@ export default function RegisterForm() {
     try {
       const { name, email, password } = formData;
       await register({ name, email, password });
-    } catch (err: any) {
-      console.error('Erro ao registrar:', err.message);
-      setErro(err.message || 'Erro ao registrar');
+      localStorage.setItem('userData', JSON.stringify({ name, email, password }));
+      window.location.href = '/login';
+    } catch (err: unknown) {
+      if (err instanceof Error) {
+        console.error('Erro ao registrar:', err.message);
+        setErro(err.message || 'Erro ao registrar');
+      } else {
+        setErro('Erro ao registrar');
+      }
     }
   };
 
   return (
     <form
       onSubmit={handleSubmit}
-      className="bg-zinc-900 p-8 w-full max-w-md rounded-xl"
+      className="bg-white bg-opacity-95 p-8 rounded-xl shadow-2xl w-full max-w-sm"
     >
-      <h2 className="text-2xl font-bold mb-6 text-center text-white">Cadastro</h2>
+      <h2 className="text-3xl font-extrabold mb-6 text-center text-blue-700">Cadastro</h2>
 
       <div className="mb-4">
-        <label htmlFor="name" className="block text-sm font-medium text-zinc-300">
-          Nome
+        <label htmlFor="name" className="block text-sm font-medium text-blue-700">
+          
         </label>
         <input
           type="text"
           name="name"
+          placeholder="Nome"
           id="name"
           value={formData.name}
           onChange={handleChange}
-          className="mt-1 block w-full px-4 py-2 border rounded-md shadow-sm focus:ring focus:ring-blue-300 hover:border-blue-500"
+          className="mt-1 block w-full px-4 py-2 border border-blue-300 text-blue-700 rounded-xl shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 placeholder-blue-400"
           required
         />
       </div>
 
       <div className="mb-4">
-        <label htmlFor="email" className="block text-sm font-medium text-gray-300">
-          Email
+        <label htmlFor="email" className="block text-sm font-medium text-blue-700">
+          
         </label>
         <input
           type="email"
           name="email"
+          placeholder="Email"
           id="email"
           value={formData.email}
           onChange={handleChange}
-          className="mt-1 block w-full px-4 py-2 border rounded-md shadow-sm focus:ring focus:ring-blue-300 hover:border-blue-400"
+          className="mt-1 block w-full px-4 py-2 border border-blue-300 text-blue-700 rounded-xl shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 placeholder-blue-400"
           required
         />
       </div>
 
       <div className="mb-4">
-        <label htmlFor="password" className="block text-sm font-medium text-gray-300">
-          Senha
+        <label htmlFor="password" className="block text-sm font-medium text-blue-700">
+          
         </label>
         <input
           type="password"
           name="password"
+          placeholder="Senha"
           id="password"
           value={formData.password}
           onChange={handleChange}
-          className="mt-1 block w-full px-4 py-2 border rounded-md shadow-sm focus:ring focus:ring-blue-300 hover:border-blue-400"
+          className="mt-1 block w-full px-4 py-2 border border-blue-300 text-blue-700 rounded-xl shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 placeholder-blue-400"
           required
         />
       </div>
@@ -90,7 +99,7 @@ export default function RegisterForm() {
 
       <button
         type="submit"
-        className="w-full bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-700 transition"
+        className="w-full bg-blue-700 text-white py-2 rounded-xl hover:bg-blue-800 transition font-bold"
       >
         Cadastrar
       </button>

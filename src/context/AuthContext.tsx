@@ -5,11 +5,13 @@ import { useRouter } from 'next/navigation';
 import { login as loginService, register as registerService } from '../services/authService';
 import { setToken, getToken, removeToken } from '../utils/tokenUtils';
 
+import { RegisterFormData } from '../types';
+
 interface AuthContextType {
   user: string | null;
   token: string | null;
   login: (email: string, password: string) => Promise<void>;
-  register: (data: any) => Promise<void>;
+  register: (data: RegisterFormData) => Promise<void>;
   logout: () => void;
   isAuthenticated: boolean;
 }
@@ -23,10 +25,8 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
 
   useEffect(() => {
     const storedToken = getToken();
-    if (storedToken) {
-      setTokenState(storedToken);
-      setUser('Usuário autenticado'); 
-    }
+    setTokenState(storedToken);
+    setUser(storedToken ? 'Usuário autenticado' : null);
   }, []);
 
   const login = async (email: string, password: string) => {
@@ -34,27 +34,44 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       const response = await loginService(email, password);
       setToken(response.token);
       setTokenState(response.token);
-      setUser(response.user); 
-      router.push('/');
+      setUser(response.user);
+      // O redirecionamento será feito pelo useEffect abaixo
     } catch (error) {
+      console.error('Erro ao fazer login:', error);
       throw error;
     }
   };
 
-  const register = async (data: any) => {
-  try {
-    await registerService(data);
-    router.push('/Login');
-  } catch (error: any) {
-    throw new Error(error?.message || 'Erro ao registrar usuário');
-  }
-};
+  useEffect(() => {
+    if (
+      token &&
+      typeof window !== 'undefined' &&
+      window.location.pathname !== '/' &&
+      window.location.pathname !== '/login' &&
+      window.location.pathname !== '/register'
+    ) {
+      router.push('/');
+    }
+  }, [token, router]);
+
+  const register = async (data: RegisterFormData) => {
+    try {
+      await registerService(data);
+      router.push('/login'); // Redireciona para login após registro
+    } catch (error: unknown) {
+      if (error instanceof Error) {
+        throw new Error(error.message || 'Erro ao registrar usuário');
+      } else {
+        throw new Error('Erro ao registrar usuário');
+      }
+    }
+  };
 
   const logout = () => {
     removeToken();
     setTokenState(null);
     setUser(null);
-    router.push('/Login');
+    router.push('/login'); // Redireciona para login após logout
   };
 
   const isAuthenticated = !!token;

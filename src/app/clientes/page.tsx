@@ -36,13 +36,15 @@ export default function ClientesPage() {
   };
 
   return (
-    <div className="p-6 max-w-4xl mx-auto">
-      <h1 className="text-2xl font-bold mb-4">Clientes</h1>
-      <ListaUsuarios
-        usuarios={usuarios}
-        selecionarUsuario={selecionarUsuario}
-        removerUsuario={removerUsuario}
-      />
+    <div className="flex flex-col items-center justify-center min-h-screen bg-gradient-to-br from-gray-100 via-gray-300 to-blue-600">
+      <div className="bg-white bg-opacity-95 p-8 rounded-xl shadow-2xl w-full max-w-sm">
+        <h2 className="text-3xl font-extrabold mb-6 text-center text-blue-700">Clientes</h2>
+        <ListaUsuarios
+          usuarios={usuarios}
+          selecionarUsuario={selecionarUsuario}
+          removerUsuario={removerUsuario}
+        />
+      </div>
     </div>
   );
 }
