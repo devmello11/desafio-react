@@ -47,10 +47,10 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       setTokenState(response.token);
       let userObj: AuthUser;
       if (response.user && typeof response.user === 'object' && response.user !== null) {
-        const anyUser = response.user as any;
+        const userObjCast = response.user as Partial<AuthUser>;
         userObj = {
-          name: anyUser.name || anyUser.email || email.split('@')[0],
-          email: anyUser.email || email
+          name: userObjCast.name || userObjCast.email || email.split('@')[0],
+          email: userObjCast.email || email
         };
       } else {
         userObj = {
