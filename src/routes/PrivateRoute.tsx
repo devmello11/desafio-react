@@ -2,24 +2,21 @@
 
 import { useAuth } from '../modules/auth/AuthContext';
 import { useRouter } from 'next/navigation';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 
 interface PrivateRouteProps {
   children: React.ReactNode;
 }
 
 const PrivateRoute = ({ children }: PrivateRouteProps) => {
-  const { isAuthenticated } = useAuth();
+  const { isAuthenticated, loading } = useAuth();
   const router = useRouter();
-  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    if (!isAuthenticated) {
+    if (!loading && !isAuthenticated) {
       router.push('/login');
-    } else {
-      setLoading(false);
     }
-  }, [isAuthenticated, router]);
+  }, [isAuthenticated, loading, router]);
 
   if (loading) {
     return <div className="text-center mt-10">Carregando...</div>;

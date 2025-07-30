@@ -18,6 +18,7 @@ interface AuthContextType {
   register: (data: RegisterFormData) => Promise<void>;
   logout: () => void;
   isAuthenticated: boolean;
+  loading: boolean;
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
@@ -60,7 +61,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       setUser(userObj);
       localStorage.setItem('auth_user', JSON.stringify(userObj));
       window.dispatchEvent(new Event('hide-loading-global'));
-      router.push('/clientes');
+      router.push('/clients');
     } catch (error) {
       window.dispatchEvent(new Event('hide-loading-global'));
       throw error;
@@ -88,9 +89,24 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   };
 
   const isAuthenticated = !!user && !!token;
+  // Novo estado de loading
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    // Garante que o estado de autenticação é restaurado do localStorage
+    const storedToken = getToken();
+    setTokenState(storedToken);
+    const storedUser = typeof window !== 'undefined' ? localStorage.getItem('auth_user') : null;
+    if (storedToken && storedUser) {
+      setUser(JSON.parse(storedUser));
+    } else {
+      setUser(null);
+    }
+    setLoading(false);
+  }, []);
 
   return (
-    <AuthContext.Provider value={{ user, token, login, register, logout, isAuthenticated }}>
+    <AuthContext.Provider value={{ user, token, login, register, logout, isAuthenticated, loading }}>
       {children}
     </AuthContext.Provider>
   );
