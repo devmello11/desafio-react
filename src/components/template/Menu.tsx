@@ -54,7 +54,6 @@ export default function Menu(props: MenuProps){
             <span>Lista</span>
             {loadingMenu === 'lista' && <span className="ml-2 animate-spin rounded-full h-4 w-4 border-b-2 border-emerald-600 z-50"></span>}
         </button>
-        {/* ...restante do código... */}
         </div>
     );
 }

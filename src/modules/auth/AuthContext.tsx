@@ -89,11 +89,9 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   };
 
   const isAuthenticated = !!user && !!token;
-  // Novo estado de loading
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // Garante que o estado de autenticação é restaurado do localStorage
     const storedToken = getToken();
     setTokenState(storedToken);
     const storedUser = typeof window !== 'undefined' ? localStorage.getItem('auth_user') : null;
