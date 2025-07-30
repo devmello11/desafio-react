@@ -36,7 +36,7 @@ export default function RegisterForm() {
       toast.success('Cadastro realizado com sucesso!', { duration: 2500, icon: '✅' });
       setTimeout(() => {
         localStorage.setItem('userData', JSON.stringify({ name, email, password }));
-        router.push('/clientes');
+        router.push('/clients');
       }, 1200);
     } catch (err: unknown) {
       if (err instanceof Error) {

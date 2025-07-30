@@ -10,7 +10,7 @@ import User from '../../models/User';
 import { getClients, createClient, updateClient, deleteClient } from '../../modules/services/clients';
 import { useSearchParams } from 'next/navigation';
 
-export default function ClientesPage() {
+export default function ClientsPage() {
   const [loadingGlobal, setLoadingGlobal] = useState<string | null>(null);
 
   useEffect(() => {

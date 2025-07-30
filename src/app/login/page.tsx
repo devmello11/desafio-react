@@ -30,7 +30,7 @@ export default function LoginPage() {
       window.dispatchEvent(new Event('show-loading-global'));
       await login(email, password);
       toast.success('Login realizado com sucesso!', { duration: 2000 });
-      router.push('/clientes');
+      router.push('/clients');
     } catch (err: unknown) {
       window.dispatchEvent(new Event('hide-loading-global'));
       if (err instanceof Error) {
