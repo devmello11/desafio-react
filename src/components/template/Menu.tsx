@@ -54,6 +54,23 @@ export default function Menu(props: MenuProps){
             <span>Lista</span>
             {loadingMenu === 'lista' && <span className="ml-2 animate-spin rounded-full h-4 w-4 border-b-2 border-emerald-600 z-50"></span>}
         </button>
+
+         <MenuGrupo texto="Criar novo cliente"/>
+         <button className="flex items-center my-1.5 gap-2 py-2 px-3 text-zinc-300 hover:bg-black rounded-md w-full disabled:opacity-60 z-50" onClick={() => {
+            handleMenuClick('cadastro', () => {
+              router.replace('/clients?novo=1');
+              if (typeof window !== 'undefined') {
+                window.dispatchEvent(new CustomEvent('abrir-cadastro-cliente'));
+              }
+            });
+            fecharMenuMobile();
+         }} disabled={loadingMenu === 'cadastro'}>
+            <svg className="w-4 h-4 text-zinc-300" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" d="M12 4v16m8-8H4" />
+            </svg>
+            <span>Cadastro</span>
+            {loadingMenu === 'cadastro' && <span className="ml-2 animate-spin rounded-full h-4 w-4 border-b-2 border-emerald-600 z-50"></span>}
+         </button>
         </div>
     );
 }
