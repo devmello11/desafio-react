@@ -1,8 +1,9 @@
 const API_URL = 'https://goon-teste-api-production.up.railway.app/api';
 
+
 interface LoginResponse {
   token: string;
-  user: string; 
+  user: string | { name: string; email: string };
 }
 
 export const login = async (email: string, password: string): Promise<LoginResponse> => {
@@ -15,8 +16,12 @@ export const login = async (email: string, password: string): Promise<LoginRespo
   });
 
   if (!response.ok) {
-    const error = await response.json();
-    throw new Error(error.message || 'Erro ao fazer login');
+    let errorMsg = 'Erro ao fazer login';
+    try {
+      const error = await response.json();
+      if (typeof error.message === 'string') errorMsg = error.message;
+    } catch {}
+    throw new Error(errorMsg);
   }
 
   return response.json();

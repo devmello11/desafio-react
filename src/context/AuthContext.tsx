@@ -7,8 +7,13 @@ import { setToken, getToken, removeToken } from '../utils/tokenUtils';
 
 import { RegisterFormData } from '../types';
 
+interface AuthUser {
+  name: string;
+  email: string;
+}
+
 interface AuthContextType {
-  user: string | null;
+  user: AuthUser | null;
   token: string | null;
   login: (email: string, password: string) => Promise<void>;
   register: (data: RegisterFormData) => Promise<void>;
@@ -19,30 +24,43 @@ interface AuthContextType {
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 export const AuthProvider = ({ children }: { children: ReactNode }) => {
-  const [user, setUser] = useState<string | null>(null);
+  const [user, setUser] = useState<AuthUser | null>(null);
   const [token, setTokenState] = useState<string | null>(null);
   const router = useRouter();
 
   useEffect(() => {
     const storedToken = getToken();
     setTokenState(storedToken);
-    setUser(storedToken ? 'Usuário autenticado' : null);
+    const storedUser = localStorage.getItem('auth_user');
+    if (storedToken && storedUser) {
+      setUser(JSON.parse(storedUser));
+    } else {
+      setUser(null);
+    }
   }, []);
 
   const login = async (email: string, password: string) => {
     try {
-      console.log('Tentando login com:', email, password);
       const response = await loginService(email, password);
-      console.log('Resposta da API de login:', response);
       setToken(response.token);
       setTokenState(response.token);
-      setUser(response.user);
-      router.push('/clientes'); // Redireciona para a página de clientes após login
+      let userObj: AuthUser;
+      if (response.user && typeof response.user === 'object' && response.user !== null) {
+        const anyUser = response.user as any;
+        userObj = {
+          name: anyUser.name || anyUser.email || email.split('@')[0],
+          email: anyUser.email || email
+        };
+      } else {
+        userObj = {
+          name: response.user || email.split('@')[0],
+          email: email
+        };
+      }
+      setUser(userObj);
+      localStorage.setItem('auth_user', JSON.stringify(userObj));
     } catch (error) {
       console.error('Erro ao fazer login:', error);
-      if (error instanceof Error) {
-        alert(error.message || 'Erro ao fazer login');
-      }
       throw error;
     }
   };
@@ -62,7 +80,6 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const register = async (data: RegisterFormData) => {
     try {
       await registerService(data);
-      router.push('/login'); // Redireciona para login após registro
     } catch (error: unknown) {
       if (error instanceof Error) {
         throw new Error(error.message || 'Erro ao registrar usuário');
@@ -76,7 +93,8 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     removeToken();
     setTokenState(null);
     setUser(null);
-    router.push('/login'); // Redireciona para login após logout
+    localStorage.removeItem('auth_user');
+    router.push('/login'); 
   };
 
   const isAuthenticated = !!token;

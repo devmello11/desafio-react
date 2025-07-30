@@ -1,8 +1,44 @@
+
+@keyframes modal-fade-in {
+  0% {
+    opacity: 0;
+    transform: scale(0.95) translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+.animate-modal-fade-in {
+  animation: modal-fade-in 0.7s cubic-bezier(0.4,0,0.2,1);
+}
 @import "tailwindcss";
 
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #f7f7f7;
+  --foreground: #181c2a;
+  --primary: #1a237e;
+  --primary-dark: #0d1333;
+  --accent: #f9b233;
+  --danger: #e53935;
+  --danger-dark: #b71c1c;
+  --gray-light: #f3f4f6;
+  --gray: #e5e7eb;
+  --gray-dark: #6b7280;
+
+  
+  --color-emerald-50: oklch(0.979 0.021 166.113);
+  --color-emerald-100: oklch(0.95 0.052 163.051);
+  --color-emerald-200: oklch(0.905 0.093 164.15);
+  --color-emerald-300: oklch(0.845 0.143 164.978);
+  --color-emerald-400: oklch(0.765 0.177 163.223);
+  --color-emerald-500: oklch(0.696 0.17 162.48);
+  --color-emerald-600: oklch(0.596 0.145 163.225);
+  --color-emerald-700: oklch(0.508 0.118 165.612);
+  --color-emerald-800: oklch(0.432 0.095 166.913);
+  --color-emerald-900: oklch(0.378 0.077 168.94);
+  --color-emerald-950: oklch(0.262 0.051 172.552);
 }
 
 @theme inline {
@@ -20,7 +56,7 @@
 }
 
 body {
-  background: var(--background);
+  ;
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
@@ -30,27 +66,49 @@ body {
 }
 
 .botao.azul{
-  @apply bg-blue-500 hover:bg-blue-600;
-  @apply text-white
-  
+  background: var(--primary);
+  color: #fff;
+  transition: background 0.2s;
+}
+.botao.azul:hover{
+  background: var(--primary-dark);
 }
 .botao.vermelho{
-  @apply bg-red-500 hover:bg-red-600;
-  @apply text-white
-  
+  background: var(--danger);
+  color: #fff;
+  transition: background 0.2s;
+}
+.botao.vermelho:hover{
+  background: var(--danger-dark);
 }
 .botao.cinza{
-  @apply bg-zinc-500 hover:bg-zinc-600;
-  @apply text-white
-  
+  background: var(--gray-dark);
+  color: #fff;
+  transition: background 0.2s;
+}
+.botao.cinza:hover{
+  background: #374151;
 }
 .botao.green{
-  @apply bg-green-500 hover:bg-green-600;
-  @apply text-white
-  
+  background: var(--accent);
+  color: var(--foreground);
+  transition: background 0.2s;
+}
+.botao.green:hover{
+  background: #f59e00;
 }
 .input{
-  @apply bg-zinc-900 px-4 py-2 rounded-md;
-  @apply border border-zinc-700;
+  background: var(--gray-light);
+  
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  border: 1px solid var(--gray);
+  transition: border 0.2s, box-shadow 0.2s;
+
+}
+.input:focus{
+  border: 1.5px solid var(--color-emerald-500);
+  outline: none;
+  box-shadow: 0 0 0 2px var(--color-emerald-500);
 }
 

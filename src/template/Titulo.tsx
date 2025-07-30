@@ -3,10 +3,7 @@ interface TituloProps{
     
 }
 export default function Titulo(props: TituloProps){
-return(
-    <div className="flex flex-col ">
-        <span>{props.principal}</span>
-        
-    </div>
-)
+  return (
+    <span className="text-2xl font-bold tracking-tight text-white">{props.principal}</span>
+  )
 }

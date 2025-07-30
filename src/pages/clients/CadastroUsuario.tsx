@@ -2,8 +2,8 @@
 import { useState } from "react"
 import todosOsUsuarios from "../../data/constantes/usuarios";
 import Usuario from "@/data/model/Usuarios";
-import ListaUsuarios from "./ListaUsuarios";
-import FormUsuario from "./FormUsuario";
+import FormUsuario from "../../components/FormUsuario";
+import ListaUsuarios from "../../components/ListaUsuarios";
 import Id from "@/data/model/Id";
 
 
@@ -49,16 +49,17 @@ export default function CadastroUsuario() {
             >New User</button>
             {usuarioAtual ?
                 <FormUsuario 
-                usuario={usuarioAtual} 
-                cancelar={cancelar}
-                alterarUsuario={setUsuarioAtual}
-                salvar={salvarUsuario}
-                
-                
-                /> :
-                <ListaUsuarios usuarios={usuarios}
+                    usuario={usuarioAtual} 
+                    cancelar={cancelar}
+                    alterarUsuario={setUsuarioAtual}
+                    salvar={salvarUsuario}
+                />
+                :
+                <ListaUsuarios 
+                    usuarios={usuarios}
                     selecionarUsuario={selecionarUsuario}
-                    removerUsuario={removerUsuario} />
+                    removerUsuario={removerUsuario} 
+                />
             }
 
         </div>
