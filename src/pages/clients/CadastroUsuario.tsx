@@ -2,8 +2,8 @@
 import { useState } from "react"
 import todosOsUsuarios from "../../data/constantes/usuarios";
 import Usuario from "@/data/model/Usuarios";
-import FormUsuario from "../../components/FormUsuario";
-import ListaUsuarios from "../../components/ListaUsuarios";
+import FormUsuario from "../../components/clients/FormUsuario";
+import ListaUsuarios from "../../components/clients/ListaUsuarios";
 import Id from "@/data/model/Id";
 
 

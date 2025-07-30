@@ -1,5 +1,5 @@
 "use client";
-import { ListIcon, UserPlus } from "lucide-react";
+import { ListIcon } from "lucide-react";
 import MenuGrupo from "@/components/template/MenuGrupo";
 import { useState, useEffect } from "react";
 import { useRouter } from 'next/navigation';
@@ -49,7 +49,7 @@ export default function Menu(props: MenuProps){
     return(
         <div className={` ${props.className ?? ''}`}>
          <MenuGrupo texto="Listar Clientes"/>
-         <button className="flex items-center my-1.5 gap-2 py-2 px-3 text-zinc-300 hover:bg-black rounded-md w-full disabled:opacity-60 z-50" onClick={() => { handleMenuClick('lista', () => router.push('/clientes')); fecharMenuMobile(); }} disabled={loadingMenu === 'lista'}>
+         <button className="flex items-center my-1.5 gap-2 py-2 px-3 text-zinc-300 hover:bg-black rounded-md w-full disabled:opacity-60 z-50" onClick={() => { handleMenuClick('lista', () => router.push('/clients')); fecharMenuMobile(); }} disabled={loadingMenu === 'lista'}>
             <ListIcon className="w-4 h-4 text-zinc-300" />
             <span>Lista</span>
             {loadingMenu === 'lista' && <span className="ml-2 animate-spin rounded-full h-4 w-4 border-b-2 border-emerald-600 z-50"></span>}

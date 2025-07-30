@@ -3,7 +3,7 @@
 import { createContext, useContext, useState, useEffect, ReactNode } from 'react';
 import { useRouter } from 'next/navigation';
 import { login as loginService, register as registerService } from '../services/authService';
-import { setToken, getToken, removeToken } from '../utils/tokenUtils';
+import { setToken, getToken, removeToken } from '@/modules/utils/tokenUtils';
 import { RegisterFormData } from '../../types';
 
 interface AuthUser {

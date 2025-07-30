@@ -3,7 +3,7 @@
 import { useEffect, useState, useRef } from 'react';
 import PrivateRoute from '../../routes/PrivateRoute';
 import { toast } from 'react-hot-toast';
-import Pagina from '../../template/Pagina';
+import Pagina from '@/components/template/Pagina';
 import ListaUsuarios from '@/components/clients/ListaUsuarios';
 import FormUsuario from '@/components/clients/FormUsuario';
 import User from '../../models/User';
