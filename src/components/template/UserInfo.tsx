@@ -1,8 +1,8 @@
-import { IconDotsVertical } from "@tabler/icons-react"
-import { useState, useRef, useEffect } from "react"
-import { useAuth } from "../modules/auth/AuthContext"
-import { toast } from "react-hot-toast"
-import Image from "next/image"
+import { IconDotsVertical } from "@tabler/icons-react";
+import { useState, useRef, useEffect } from "react";
+import { useAuth } from "../../modules/auth/AuthContext";
+import { toast } from "react-hot-toast";
+import Image from "next/image";
 interface UsuarioInfoProps {
     nome: string;
     email: string;
@@ -14,14 +14,12 @@ export default function UserInfo(props: UsuarioInfoProps) {
     const { logout } = useAuth();
     const [open, setOpen] = useState(false);
     const menuRef = useRef<HTMLDivElement>(null);
-
     const handleLogout = () => {
         toast.success('Logout realizado com sucesso!', { icon: '👋', duration: 2000 });
         setTimeout(() => {
             logout();
         }, 1200);
     };
-
     useEffect(() => {
         function handleClickOutside(event: MouseEvent) {
             if (menuRef.current && !menuRef.current.contains(event.target as Node)) {
@@ -37,10 +35,7 @@ export default function UserInfo(props: UsuarioInfoProps) {
             document.removeEventListener('mousedown', handleClickOutside);
         };
     }, [open]);
-
-
     const avatarUrl = '/avatar-default.svg';
-
     return (
         <div className={`flex gap-2 mt-auto relative ${props.className ?? ''}`} ref={menuRef}>
             <Image
@@ -58,12 +53,7 @@ export default function UserInfo(props: UsuarioInfoProps) {
                 <IconDotsVertical className="cursor-pointer" onClick={() => setOpen((v) => !v)} />
                 {open && (
                     <div className="absolute right-0 top-8 z-50 bg-white border border-zinc-200 rounded shadow-lg min-w-[120px]">
-                        <button
-                            className="w-full text-left px-4 py-2 text-indigo-800 hover:bg-zinc-100"
-                            onClick={handleLogout}
-                        >
-                            Sair
-                        </button>
+                        <button className="block w-full text-left px-4 py-2 text-zinc-800 hover:bg-zinc-100" onClick={handleLogout}>Sair</button>
                     </div>
                 )}
             </div>

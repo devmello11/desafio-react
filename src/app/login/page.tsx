@@ -4,7 +4,7 @@
 import Link from "next/link";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
-import { useAuth } from "@/context/AuthContext";
+import { useAuth } from "../../modules/auth/AuthContext";
 import { toast } from "react-hot-toast";
 
 
@@ -44,7 +44,7 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-gradient-to-br from-gray-100 via-gray-300 to-indigo-600 px-2 sm:px-4">
+    <div className="flex flex-col items-center justify-center min-h-screen bg-gradient-to-br from-gray-100 via-gray-300 to-indigo-600 px-2 sm:px-4 font-['Roboto_Condensed','Arial','Helvetica','sans-serif']">
       <form
         onSubmit={handleSubmit}
         className="backdrop-blur-md p-5 sm:p-10 rounded-xl shadow-2xl w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg border border-indigo-100"

@@ -12,7 +12,12 @@
 .animate-modal-fade-in {
   animation: modal-fade-in 0.7s cubic-bezier(0.4,0,0.2,1);
 }
+
 @import "tailwindcss";
+
+html, body {
+  font-family: 'Roboto Condensed', Arial, Helvetica, sans-serif;
+}
 
 
 :root {

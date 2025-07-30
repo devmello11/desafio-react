@@ -1,11 +1,11 @@
-import Menu  from "./Menu"
-import UserInfo from "./UserInfo"
-import Logo from "./Logo"
+import Menu  from "@/components/template/Menu";
+import UserInfo from "@/components/template/UserInfo";
+import Logo from "@/components/template/Logo";
 interface PaginaProps {
    children: React.ReactNode | ((ctx: { menuAberto: boolean; setMenuAberto: (open: boolean) => void }) => React.ReactNode);
 }
 import { useState, useEffect } from "react";
-import { useAuth } from "../modules/auth/AuthContext";
+import { useAuth } from "../../modules/auth/AuthContext";
 
 export default function Pagina(props: PaginaProps){
     const { user } = useAuth();
@@ -29,7 +29,6 @@ export default function Pagina(props: PaginaProps){
       };
     }, []);
 
-    
     useEffect(() => {
       function onShowLoading() { setLoadingGlobal(true); }
       function onHideLoading() { setLoadingGlobal(false); }
@@ -43,7 +42,6 @@ export default function Pagina(props: PaginaProps){
 
     return (
         <div className="flex h-screen">
-            
             {loadingGlobal && (
               <div className="fixed inset-0 z-[9999] flex items-center justify-center bg-black bg-opacity-40">
                 <div className="animate-spin rounded-full h-16 w-16 border-b-4 border-emerald-600"></div>
@@ -83,4 +81,3 @@ export default function Pagina(props: PaginaProps){
         </div>
     );
 }
-

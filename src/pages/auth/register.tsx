@@ -1,4 +1,4 @@
-import RegisterForm from '@/components/RegisterForm';
+import RegisterForm from '@/components/forms/RegisterForm';
 import { GetServerSideProps } from 'next';
 
 export default function RegisterPage() {
