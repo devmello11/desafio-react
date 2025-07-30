@@ -29,10 +29,10 @@ export default function ListaUsuarios(props: ListaUsuariosProps) {
         <table className="w-full text-left border-separate border-spacing-y-3">
           <thead>
             <tr>
-              <th className="px-6 py-2 text-xs font-bold uppercase tracking-wide text-emerald-700">Nome</th>
-              <th className="px-6 py-2 text-xs font-bold uppercase tracking-wide text-emerald-700">E-mail</th>
-              <th className="px-6 py-2 text-xs font-bold uppercase tracking-wide text-emerald-700">Telefone</th>
-              <th className="px-6 py-2 text-xs font-bold uppercase tracking-wide text-emerald-700">Empresa</th>
+              <th className="px-6 py-2 text-xs font-bold uppercase tracking-wide text-indigo-700">Nome</th>
+              <th className="px-6 py-2 text-xs font-bold uppercase tracking-wide text-indigo-700">E-mail</th>
+              <th className="px-6 py-2 text-xs font-bold uppercase tracking-wide text-indigo-700">Telefone</th>
+              <th className="px-6 py-2 text-xs font-bold uppercase tracking-wide text-indigo-700">Empresa</th>
               <th className="px-6 py-2"></th>
             </tr>
           </thead>
@@ -46,7 +46,7 @@ export default function ListaUsuarios(props: ListaUsuariosProps) {
                 <td className="px-6 py-3">
                   <div className="flex gap-2 justify-end">
                     <button
-                      className="rounded-full bg-emerald-600 hover:bg-emerald-800 text-white px-5 py-2 font-bold transition-colors duration-200 shadow-sm"
+                      className="rounded-full bg-indigo-600 hover:bg-indigo-800 text-white px-5 py-2 font-bold transition-colors duration-200 shadow-sm"
                       onClick={() => props.selecionarUsuario(usuario)}
                     >
                       <IconEditCircle className="w-5 h-5 inline" /> Editar
@@ -68,24 +68,24 @@ export default function ListaUsuarios(props: ListaUsuariosProps) {
         {props.usuarios.map((usuario) => (
           <div key={usuario.id} className="bg-white rounded-2xl shadow-lg p-6 flex flex-col gap-2 border border-zinc-100">
             <div>
-              <span className="text-xs font-semibold uppercase tracking-wide text-emerald-600">Nome</span>
+              <span className="text-xs font-semibold uppercase tracking-wide text-indigo-600">Nome</span>
               <div className="text-lg font-semibold text-zinc-900 truncate">{formatarNome(usuario.name)}</div>
             </div>
             <div>
-              <span className="text-xs font-semibold uppercase tracking-wide text-emerald-600">E-mail</span>
+              <span className="text-xs font-semibold uppercase tracking-wide text-indigo-600">E-mail</span>
               <div className="text-sm text-zinc-900 truncate">{usuario.email}</div>
             </div>
             <div>
-              <span className="text-xs font-semibold uppercase tracking-wide text-emerald-600">Telefone</span>
+              <span className="text-xs font-semibold uppercase tracking-wide text-indigo-600">Telefone</span>
               <div className="text-sm text-zinc-900 truncate">{usuario.phone}</div>
             </div>
             <div>
-              <span className="text-xs font-semibold uppercase tracking-wide text-emerald-600">Empresa</span>
+              <span className="text-xs font-semibold uppercase tracking-wide text-indigo-600">Empresa</span>
               <div className="text-sm text-zinc-900 truncate">{usuario.company}</div>
             </div>
             <div className="flex gap-2 mt-2 justify-end">
               <button
-                className="rounded-full bg-emerald-600 hover:bg-emerald-800 text-white px-6 py-2 font-bold transition-colors duration-200 shadow-sm"
+                className="rounded-full bg-indigo-600 hover:bg-indigo-800 text-white px-6 py-2 font-bold transition-colors duration-200 shadow-sm"
                 onClick={() => props.selecionarUsuario(usuario)}
               >
                 <IconEditCircle className="w-5 h-5 inline" /> Editar

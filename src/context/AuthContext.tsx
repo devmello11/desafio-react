@@ -41,6 +41,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
 
   const login = async (email: string, password: string) => {
     try {
+      window.dispatchEvent(new Event('show-loading-global'));
       const response = await loginService(email, password);
       setToken(response.token);
       setTokenState(response.token);
@@ -62,6 +63,10 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     } catch (error) {
       console.error('Erro ao fazer login:', error);
       throw error;
+    } finally {
+      setTimeout(() => {
+        window.dispatchEvent(new Event('hide-loading-global'));
+      }, 1200);
     }
   };
 

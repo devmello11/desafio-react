@@ -89,13 +89,13 @@ body {
 .botao.cinza:hover{
   background: #374151;
 }
-.botao.green{
-  background: var(--accent);
-  color: var(--foreground);
+.botao.indigo {
+  background: var(--primary);
+  color: #fff;
   transition: background 0.2s;
 }
-.botao.green:hover{
-  background: #f59e00;
+.botao.indigo:hover {
+  background: var(--primary-dark);
 }
 .input{
   background: var(--gray-light);
@@ -107,8 +107,8 @@ body {
 
 }
 .input:focus{
-  border: 1.5px solid var(--color-emerald-500);
+  border: 1.5px solid var(--primary);
   outline: none;
-  box-shadow: 0 0 0 2px var(--color-emerald-500);
+  box-shadow: 0 0 0 2px var(--primary);
 }
 

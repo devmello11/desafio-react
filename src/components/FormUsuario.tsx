@@ -73,7 +73,7 @@ export default function FormUsuario(props: FormUsuarioProps) {
                       ×
                     </button>
                     <div className="flex flex-col items-center">
-                      <svg className="h-12 w-12 text-emerald-600 mb-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <svg className="h-12 w-12 text-indigo-600 mb-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                       </svg>
                       <div className="text-xl font-bold text-zinc-900 mb-2 text-center">
@@ -81,7 +81,7 @@ export default function FormUsuario(props: FormUsuarioProps) {
                       </div>
                       <div className="flex gap-4 mt-6">
                         <button
-                          className="rounded-full bg-emerald-600 hover:bg-emerald-800 text-white px-6 py-2 font-bold transition-colors duration-200 min-w-[110px]"
+                          className="rounded-full bg-indigo-600 hover:bg-indigo-800 text-white px-6 py-2 font-bold transition-colors duration-200 min-w-[110px]"
                           onClick={confirmarEdicao}
                           autoFocus
                         >
@@ -98,13 +98,13 @@ export default function FormUsuario(props: FormUsuarioProps) {
                   </div>
                 </div>
             )}
-            <div className="flex flex-col gap-6 bg-white rounded-2xl shadow-2xl p-8 border border-zinc-100 max-w-2xl mx-auto animate-modal-fade-in">
-                <div className="text-2xl font-bold text-zinc-900 mb-2">
+            <div className="flex flex-col gap-6 bg-white rounded-2xl shadow-2xl p-8 border border-indigo-100 max-w-2xl mx-auto animate-modal-fade-in">
+                <div className="text-2xl font-bold text-indigo-900 mb-2">
                     {isEdit ? 'Editar Usuário' : 'Novo Usuário'}
                 </div>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div className="flex flex-col gap-1">
-                        <span className="text-zinc-700 font-semibold mb-1">Nome completo</span>
+                        <span className="text-indigo-700 font-semibold mb-1">Nome completo</span>
                         <input
                             type="text"
                             value={usuario.name !== undefined && usuario.name !== null ? usuario.name : ""}
@@ -112,18 +112,18 @@ export default function FormUsuario(props: FormUsuarioProps) {
                                 alterarUsuario({ ...usuario, name: e.target.value });
                                 if (e.target.value && e.target.value.trim() !== "") setErroNome("");
                             }}
-                            className="input bg-zinc-50 border-zinc-200 text-zinc-700 placeholder-zinc-400 focus:ring-2 focus:ring-blue-600 focus:border-blue-600"
+                            className="input bg-indigo-50 border-indigo-200 text-indigo-700 placeholder-indigo-400 focus:ring-2 focus:ring-indigo-600 focus:border-indigo-600"
                             placeholder="Digite o nome completo"
                         />
                         {erroNome && <span className="text-red-500 text-xs mt-1">{erroNome}</span>}
                     </div>
                     <div className="flex flex-col gap-1">
-                        <span className="text-zinc-700 font-semibold mb-1">E-mail</span>
+                        <span className="text-indigo-700 font-semibold mb-1">E-mail</span>
                         <input
                             type="text"
                             value={usuario.email !== undefined ? usuario.email : ""}
                             onChange={(e) => alterarUsuario({ ...usuario, email: e.target.value })}
-                            className="input bg-zinc-50 border-zinc-200 text-zinc-700 placeholder-zinc-400 focus:ring-2 focus:ring-blue-600 focus:border-blue-600"
+                            className="input bg-indigo-50 border-indigo-200 text-indigo-700 placeholder-indigo-400 focus:ring-2 focus:ring-indigo-600 focus:border-indigo-600"
                             placeholder="Digite o e-mail"
                         />
                     </div>
@@ -131,18 +131,18 @@ export default function FormUsuario(props: FormUsuarioProps) {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     {(!usuario.id || usuario.senha) && (
                         <div className="flex flex-col gap-1">
-                            <span className="text-zinc-700 font-semibold mb-1">Senha</span>
+                            <span className="text-indigo-700 font-semibold mb-1">Senha</span>
                             <input
                                 type="password"
                                 value={usuario.senha !== undefined ? usuario.senha : ""}
                                 onChange={(e) => alterarUsuario({ ...usuario, senha: e.target.value })}
-                                className="input bg-zinc-50 border-zinc-200 text-zinc-700 placeholder-zinc-400 focus:ring-2 focus:ring-blue-600 focus:border-blue-600"
+                                className="input bg-indigo-50 border-indigo-200 text-indigo-700 placeholder-indigo-400 focus:ring-2 focus:ring-indigo-600 focus:border-indigo-600"
                                 placeholder="Digite a senha"
                             />
                         </div>
                     )}
                     <div className="flex flex-col gap-1">
-                        <span className="text-zinc-700 font-semibold mb-1">Telefone</span>
+                        <span className="text-indigo-700 font-semibold mb-1">Telefone</span>
                         <input
                             type="text"
                             maxLength={15}
@@ -151,30 +151,30 @@ export default function FormUsuario(props: FormUsuarioProps) {
                                 const value = e.target.value.replace(/\D/g, "").slice(0, 11);
                                 alterarUsuario({ ...usuario, phone: value });
                             }}
-                            className="input bg-zinc-50 border-zinc-200 text-zinc-700 placeholder-zinc-400 focus:ring-2 focus:ring-blue-600 focus:border-blue-600"
+                            className="input bg-indigo-50 border-indigo-200 text-indigo-700 placeholder-indigo-400 focus:ring-2 focus:ring-indigo-600 focus:border-indigo-600"
                             placeholder="Digite o telefone"
                         />
                     </div>
                 </div>
                 <div className="flex flex-col gap-1">
-                    <span className="text-zinc-700 font-semibold mb-1">Empresa</span>
+                    <span className="text-indigo-700 font-semibold mb-1">Empresa</span>
                     <input
                         type="text"
                         value={usuario.company !== undefined ? usuario.company : ""}
                         onChange={(e) => alterarUsuario({ ...usuario, company: e.target.value })}
-                        className="input bg-zinc-50 border-zinc-200 text-zinc-700 placeholder-zinc-400 focus:ring-2 focus:ring-blue-600 focus:border-blue-600"
+                        className="input bg-indigo-50 border-indigo-200 text-indigo-700 placeholder-indigo-400 focus:ring-2 focus:ring-indigo-600 focus:border-indigo-600"
                         placeholder="Digite a empresa"
                     />
                 </div>
                 <div className="flex gap-4 mt-4 justify-end">
                     <button
-                        className={`rounded-full bg-emerald-600 hover:bg-emerald-800 text-white px-8 py-3 font-bold text-lg shadow transition-colors duration-200${isEdit && !isAlterado ? ' opacity-50 cursor-not-allowed' : ''}`}
+                        className={`rounded-full bg-indigo-600 hover:bg-indigo-800 text-white px-8 py-3 font-bold text-lg shadow transition-colors duration-200${isEdit && !isAlterado ? ' opacity-50 cursor-not-allowed' : ''}`}
                         onClick={handleSalvar}
                         disabled={isEdit && !isAlterado}
                     >
                         Salvar
                     </button>
-                    <button className="rounded-full bg-zinc-400 hover:bg-zinc-600 text-zinc-900 px-8 py-3 font-bold text-lg shadow transition-colors duration-200" onClick={cancelar}>Cancelar</button>
+                    <button className="rounded-full bg-indigo-200 hover:bg-indigo-400 text-indigo-900 px-8 py-3 font-bold text-lg shadow transition-colors duration-200" onClick={cancelar}>Cancelar</button>
                 </div>
             </div>
         </>

@@ -1,5 +1,7 @@
+
 import '../styles/globals.css';
-import { ReactNode } from 'react';
+import React, { ReactNode } from 'react';
+import GlobalLoading from '../components/GlobalLoading';
 import { AuthProvider } from '../context/AuthContext';
 import { Toaster } from 'react-hot-toast';
 
@@ -17,9 +19,11 @@ export default function RootLayout({ children }: { children: ReactNode }) {
             gutter={8}
             containerStyle={{ top: 16, right: 16 }}
           />
+          <GlobalLoading />
           {children}
         </AuthProvider>
       </body>
     </html>
   );
 }
+
